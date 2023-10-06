@@ -1,9 +1,8 @@
 # cleaningdata_final_assessment
 Getting and Cleaning Data Final Assessment
 
-=================================================================
 Human Activity Recognition Using Smartphones Dataset
-==================================================================
+
 Coursera Week 4 Assessment. 
 
 The data is provided as separate datasets of the human activity accelerometry measurements, there is a training and a test dataset, these have to be joined to form the
