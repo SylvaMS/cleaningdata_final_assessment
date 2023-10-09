@@ -1,0 +1,63 @@
+---
+title: "run_analysis"
+author: "Sylva"
+date: "2023-09-17"
+output: pdf
+---
+# Reading in all the files that have been supplied and merge them
+```{r}
+subject_test <- read.table("subject_test.txt")
+subject_train <- read.table("subject_train.txt")
+subject <- rbind(subject_test, subject_train)
+
+X_test <- read.table("X_test.txt", header = F)
+X_train <- read.table("X_train.txt", header = F)
+
+y_test <- read.table("y_test.txt")
+y_train <- read.table("y_train.txt")
+
+data_x <- rbind(X_test, X_train) 
+data_y <- rbind(y_test, y_train) 
+colnames(data_y) <- "activity"
+colnames(subject) <- "ID"
+variable_names <- readLines("features.txt")
+colnames(data_x) <- variable_names
+
+data <- cbind(data_x, subject, data_y)
+
+activity_labels <- readLines("activity_labels.txt")
+labels <- as.factor(activity_labels)
+
+# Convert the last column of data into factors with labels
+data$activity <- factor(data[,"activity"], labels = labels)
+
+```
+
+# Extracts only the measurements on the mean and standard deviation for 
+# each measurement. 
+
+```{r}
+# Identify column names containing "mean" or "sd"
+columns_mean_sd <- grepl("mean|std", names(data))
+
+# Subset the data frame to only select columns with "mean" or "std" in their names
+data_subset <- data[, c(columns_mean_sd)]
+str(data_subset)
+ID <- data[,"ID"]
+activity <- data[,"activity"]
+data_subset <- cbind(data_subset, ID, activity)
+```
+
+# From the data set in step 4, a second, independent tidy data 
+# set is created with the average of each variable for each activity and each subject (named "Avg_...") 
+
+```{r}
+library(tidyverse)
+tidy_data <- data_subset %>%
+  group_by(ID, activity) %>%
+    summarize_all(mean)
+
+tidy_data <- tidy_data %>%
+  rename_with(~paste0("Avg_", .), -ID, -activity)
+str(tidy_data)
+```
