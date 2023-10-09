@@ -1,9 +1,11 @@
-# cleaningdata_final_assessment
-Getting and Cleaning Data Final Assessment
+# "Getting and Cleaning Data"
+This repository contains data, documentation, and files for the course project of the "Getting and Cleaning Data" course provided on Coursera by Johns Hopkins University.
 
-Human Activity Recognition Using Smartphones Dataset
+The project involves processing an existing data set of smartphone sensor data to produce a derived data set that contains the mean values for a subset of the features from the original data. The source data and documentation for this project is from:
 
-Coursera Week 4 Assessment. 
+Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
+
+
 
 The data is provided as separate datasets of the human activity accelerometry measurements, there is a training and a test dataset, these have to be joined to form the
 complete dataset. Furthere, identification of respective activity of the studied particants also is contained in
